@@ -51,11 +51,15 @@ if uploaded_file is not None:
     confidence = 1 - prediction if prediction < 0.5 else prediction
 
     # Display result
-    st.header("🔍 Prediction Result")
+    st.markdown(
+    "<h4 style='color: #6c757d;'>🔍 Prediction Result</h4>",
+    unsafe_allow_html=True
+)
+
     st.success(f"**Prediction:** {label}")
     st.write(f"**Confidence:** {confidence:.2%}")
 
     # Model info
-    st.markdown("---")
-    st.markdown("📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE")
+    st.markdown("---\n📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE")
+
 
