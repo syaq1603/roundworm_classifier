@@ -38,4 +38,5 @@ if uploaded_file is not None:
 
         st.image(image, caption="Uploaded Image", use_column_width=True, channels="GRAY")
         st.success(f"**Prediction:** {label} ({confidence:.2f}% confidence)")
-Add Streamlit app for roundworm classification
+# Add Streamlit app for roundworm classification
+
