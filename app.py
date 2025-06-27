@@ -58,7 +58,7 @@ if uploaded_file is not None:
 
 st.markdown(
     f"""
-    ✅ **Prediction:** {predicted_class}  
+    ✅ **Prediction:** {label}  
     📊 **Confidence:** {confidence:.2f}  
     📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE
     """
