@@ -1,9 +1,7 @@
 streamlit
-numpy
-pandas
+tensorflow-cpu==2.12.0
 opencv-python
+numpy
 scikit-learn
-matplotlib
-seaborn
-imbalanced-learn
-tensorflow
+imbalanced-learn==0.11.0
+
