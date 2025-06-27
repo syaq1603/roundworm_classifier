@@ -11,7 +11,11 @@ st.set_page_config(
 )
 
 # Main title and project description
-st.title("🧬 Roundworm Life Status Classifier")
+st.markdown(
+    "<h3 style='text-align: center; color: #4B8BBE;'>🧬 Roundworm Life Status Classifier</h3>",
+    unsafe_allow_html=True
+)
+
 st.markdown("""
 This Streamlit app classifies microscopic roundworm images as either **Alive** or **Dead**.  
 The model was trained using a **CNN with SMOTE** to improve class balance, achieving **96% accuracy**.
