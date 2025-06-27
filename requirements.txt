@@ -1,11 +1,9 @@
-streamlit==1.19.0         # ✅ Compatible with TensorFlow 2.11.0
+streamlit==1.27.2
 tensorflow==2.12.0
 keras==2.12.0
 protobuf<5
-streamlit==1.27.2
 opencv-python-headless
 numpy
 Pillow
 altair==4.2.2
-
 
