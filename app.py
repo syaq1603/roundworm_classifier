@@ -52,15 +52,17 @@ if uploaded_file is not None:
 
     # Display result
     st.markdown(
-    "<h4 style='color: #6c757d;'>🔍 Prediction Result</h4>",
-    unsafe_allow_html=True
-)
+        "<h4 style='color: #6c757d;'>🔍 Prediction Result</h4>",
+        unsafe_allow_html=True
+    )
 
-st.markdown(
-    f"""
-    ✅ **Prediction:** {label}  
-    📊 **Confidence:** {confidence:.2f}  
-    📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE
-    """
-)
+    st.markdown(
+        f"""
+        ✅ **Prediction:** {label}  
+        📊 **Confidence:** {confidence:.2f}  
+        📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE
+        """,
+        unsafe_allow_html=True
+    )
+
 
