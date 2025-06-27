@@ -56,10 +56,11 @@ if uploaded_file is not None:
     unsafe_allow_html=True
 )
 
-    st.success(f"**Prediction:** {label}")
-    st.write(f"**Confidence:** {confidence:.2%}")
-
-    # Model info
-    st.markdown("---\n📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE")
-
+st.markdown(
+    f"""
+    ✅ **Prediction:** {predicted_class}  
+    📊 **Confidence:** {confidence:.2f}  
+    📌 **Model Used:** Convolutional Neural Network (CNN) + SMOTE
+    """
+)
 
