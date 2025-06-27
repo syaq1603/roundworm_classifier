@@ -47,4 +47,53 @@ if uploaded_file is not None:
 
 else:
     st.warning("Please upload an image to proceed.")
+import streamlit as st
+import tensorflow as tf
+from PIL import Image
+import numpy as np
+
+# Page configuration
+st.set_page_config(
+    page_title="Roundworm Classifier",
+    page_icon="🧬",
+    layout="centered",
+)
+
+# Title and description
+st.title("🧬 Roundworm Life Status Classifier")
+st.markdown("""
+This app uses a trained deep learning model to classify microscopic roundworm images as either **Alive** or **Dead**.  
+The best performing model was trained using **CNN + SMOTE** and achieves **96% accuracy** with high class balance.
+""")
+
+# Load the model (cached for performance)
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("best_model.keras")
+
+model = load_model()
+
+# Upload section
+st.header("📤 Upload Roundworm Image")
+uploaded_file = st.file_uploader("Choose an image file (JPG, PNG, or TIFF)", type=["jpg", "jpeg", "png", "tif", "tiff"])
+
+if uploaded_file is not None:
+    # Open and display the image
+    image = Image.open(uploaded_file).convert("RGB")
+    st.image(image, caption="Uploaded Image", width=128)
+
+    # Preprocess the image
+    img_resized = image.resize((128, 128))
+    img_array = np.array(img_resized) / 255.0
+    img_batch = np.expand_dims(img_array, axis=0)
+
+    # Prediction
+    prediction = model.predict(img_batch)[0][0]
+    class_label = "Alive" if prediction < 0.5 else "Dead"
+    confidence = 1 - prediction if prediction < 0.5 else prediction
+
+    # Output
+    st.header("🔍 Prediction Result")
+    st.success(f"**Prediction:** {class_label}")
+    st.write(f"**Confidence:** {confidence:.2%}")
 
