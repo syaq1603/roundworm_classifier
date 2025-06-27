@@ -1,8 +1,7 @@
 import streamlit as st
 import numpy as np
 import cv2
-import tensorflow as tf
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 
 # Set page config
 st.set_page_config(page_title="Roundworm Classifier", layout="centered")
