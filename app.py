@@ -29,7 +29,11 @@ def load_model():
 model = load_model()
 
 # Image upload section
-st.header("📤 Upload Roundworm Image")
+st.markdown(
+    "<h4 style='color: #6c757d;'>📤 Upload Roundworm Image</h4>",
+    unsafe_allow_html=True
+)
+
 uploaded_file = st.file_uploader("Upload a JPG, PNG, or TIFF image", type=["jpg", "jpeg", "png", "tif", "tiff"])
 
 if uploaded_file is not None:
