@@ -1,9 +1,7 @@
 streamlit==1.27.2
 keras==2.11.0
-scikit-learn
-pandas
+opencv-python-headless
 numpy
-matplotlib
-seaborn
-joblib
+Pillow
+
 
