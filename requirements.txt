@@ -5,3 +5,5 @@ opencv-python-headless
 numpy
 Pillow
 protobuf<3.20             # explicitly enforce version
+altair==4.2.2
+
