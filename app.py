@@ -1,42 +1,28 @@
 import streamlit as st
-import numpy as np
-import cv2
 from tensorflow.keras.models import load_model
+import numpy as np
+from PIL import Image
 
-# Set page config
-st.set_page_config(page_title="Roundworm Classifier", layout="centered")
-
-st.title("🧬 Roundworm Image Classifier")
-st.write("Upload a microscope image (.tif) to classify the roundworm as **Alive** or **Dead**.")
-
-# File uploader
-uploaded_file = st.file_uploader("Choose a .tif image", type=["tif"])
-
-# Load model once
 @st.cache_resource
-def load_model_once():
-    model = load_model("best_model.h5")
-    return model
+def load_best_model():
+    return load_model("best_model.keras")
 
-model = load_model_once()
-image_size = (128, 128)
+model = load_best_model()
 
-if uploaded_file is not None:
-    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    image = cv2.imdecode(file_bytes, cv2.IMREAD_GRAYSCALE)
+st.title("Roundworm Classifier")
 
-    if image is None:
-        st.error("Could not read the image file.")
-    else:
-        image_resized = cv2.resize(image, image_size) / 255.0
-        image_reshaped = np.expand_dims(image_resized, axis=(0, -1))
-        image_rgb = np.repeat(image_reshaped, 3, axis=-1)
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
 
-        prediction = model.predict(image_rgb)
-        label = "Alive" if prediction.argmax() == 0 else "Dead"
-        confidence = np.max(prediction) * 100
+if uploaded_file:
+    img = Image.open(uploaded_file).resize((128, 128))
+    st.image(img, caption="Uploaded Image", use_column_width=True)
 
-        st.image(image, caption="Uploaded Image", use_column_width=True, channels="GRAY")
-        st.success(f"**Prediction:** {label} ({confidence:.2f}% confidence)")
+    img_array = np.array(img) / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
+
+    prediction = model.predict(img_array)
+    result = "Roundworm Detected" if prediction[0][0] > 0.5 else "No Roundworm Detected"
+    st.write(f"**Prediction:** {result}")
+
 
 
